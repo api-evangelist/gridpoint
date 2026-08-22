@@ -1,0 +1,109 @@
+generated: '2026-08-22'
+method: probed
+source: https://hydra.gridpoint.com/.well-known/openid-configuration
+docs: null
+note: >-
+  GridPoint publishes no scopes or permissions reference page and no OpenAPI
+  with oauth2 securitySchemes, so nothing could be derived from a contract.
+  Every scope below is taken verbatim from scopes_supported in the anonymous
+  OIDC discovery document GridPoint's own ORY Hydra authorization server serves.
+  Unusually, GridPoint models authorization as ROLE_* scopes rather than
+  resource verbs (read:sites / write:devices), so the list reveals the tenancy
+  model — GridPoint staff, customer, partner, and machine roles — but not which
+  API resources each role can reach. Descriptions below restate the role name
+  and the audience it names; they are NOT quoted from GridPoint documentation,
+  because none exists. No scope-to-operation mapping is publicly determinable.
+schemes:
+  - name: gridpoint-oidc
+    source: well-known/gridpoint-openid-configuration.json
+    issuer: https://hydra.gridpoint.com:443/
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://hydra.gridpoint.com:443/oauth2/auth
+        tokenUrl: https://hydra.gridpoint.com:443/oauth2/token
+      - flow: clientCredentials
+        tokenUrl: https://hydra.gridpoint.com:443/oauth2/token
+      - flow: implicit
+        authorizationUrl: https://hydra.gridpoint.com:443/oauth2/auth
+scope_count: 16
+scopes:
+  - scope: openid
+    kind: oidc-standard
+    description: Issue an OIDC ID token for the authenticated end user.
+    sources: [well-known/gridpoint-openid-configuration.json]
+  - scope: offline_access
+    kind: oidc-standard
+    description: Issue a refresh token so the client can renew access without re-prompting.
+    sources: [well-known/gridpoint-openid-configuration.json]
+  - scope: offline
+    kind: oidc-standard
+    description: ORY Hydra legacy alias for offline_access.
+    sources: [well-known/gridpoint-openid-configuration.json]
+  - scope: id_token
+    kind: oidc-standard
+    description: Request an ID token in the authorization response.
+    sources: [well-known/gridpoint-openid-configuration.json]
+  - scope: ROLE_GP_ADMIN
+    kind: gridpoint-role
+    audience: gridpoint-staff
+    description: GridPoint administrator role.
+    sources: [well-known/gridpoint-openid-configuration.json]
+  - scope: ROLE_GP_SUPPORT
+    kind: gridpoint-role
+    audience: gridpoint-staff
+    description: GridPoint support role.
+    sources: [well-known/gridpoint-openid-configuration.json]
+  - scope: ROLE_GP_ANALYST
+    kind: gridpoint-role
+    audience: gridpoint-staff
+    description: GridPoint analyst role.
+    sources: [well-known/gridpoint-openid-configuration.json]
+  - scope: ROLE_GP_SALES
+    kind: gridpoint-role
+    audience: gridpoint-staff
+    description: GridPoint sales role.
+    sources: [well-known/gridpoint-openid-configuration.json]
+  - scope: ROLE_CUSTOMER_ANALYST
+    kind: gridpoint-role
+    audience: customer
+    description: Customer-side analyst role.
+    sources: [well-known/gridpoint-openid-configuration.json]
+  - scope: ROLE_CUSTOMER_SITE_MANAGER
+    kind: gridpoint-role
+    audience: customer
+    description: Customer-side site manager role.
+    sources: [well-known/gridpoint-openid-configuration.json]
+  - scope: ROLE_PARTNER_COMMISSIONER
+    kind: gridpoint-role
+    audience: partner
+    description: Partner commissioning role (field installation / device commissioning).
+    sources: [well-known/gridpoint-openid-configuration.json]
+  - scope: ROLE_PARTNER_SUPPORT
+    kind: gridpoint-role
+    audience: partner
+    description: Partner support role.
+    sources: [well-known/gridpoint-openid-configuration.json]
+  - scope: ROLE_PARTNER_SUPPORT_ADMIN
+    kind: gridpoint-role
+    audience: partner
+    description: Partner support administrator role.
+    sources: [well-known/gridpoint-openid-configuration.json]
+  - scope: ROLE_PROVISIONER
+    kind: gridpoint-role
+    audience: machine
+    description: Provisioning role.
+    sources: [well-known/gridpoint-openid-configuration.json]
+  - scope: ROLE_SYSTEM
+    kind: gridpoint-role
+    audience: machine
+    description: System / service-to-service role.
+    sources: [well-known/gridpoint-openid-configuration.json]
+  - scope: ROLE_OIDC_USER
+    kind: gridpoint-role
+    audience: end-user
+    description: Baseline authenticated OIDC user role.
+    sources: [well-known/gridpoint-openid-configuration.json]
+gaps:
+  - No published scope reference; no scope is bound to a documented operation.
+  - Scopes are coarse roles, not resource permissions, so least-privilege delegation
+    to an agent or an integrator is not expressible with the published vocabulary.

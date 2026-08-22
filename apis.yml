@@ -1,17 +1,39 @@
 aid: gridpoint
 name: GridPoint
-description: 'GridPoint is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  GridPoint is a Reston, Virginia clean-technology company, founded in 2003, that
+  builds energy management and sustainability systems for commercial buildings,
+  enterprises and government agencies. It combines its own edge hardware — EC2000
+  and Edge controllers, submeters, thermostats, lighting control panels and
+  BACnet/Modbus gateways — with the cloud-based GridPoint Energy Manager
+  analytics platform, delivering HVAC and lighting automation, equipment-level
+  submetering, refrigeration monitoring, demand management, grid services and
+  carbon/sustainability reporting for multi-site portfolios in retail,
+  convenience, restaurant, automotive and public-sector estates. GridPoint sells
+  the platform as a subscription service and integrates with existing building
+  assets rather than requiring a rip-and-replace. It operates a customer
+  application, a partner commissioning channel and a public knowledge base, but
+  publishes no developer portal, no API reference and no machine-readable API
+  contract; the only machine-readable artifacts it serves anonymously are the
+  OpenID Connect discovery and JWKS documents of its own authorization server.
 url: https://raw.githubusercontent.com/api-evangelist/gridpoint/refs/heads/main/apis.yml
+image: https://icon.horse/icon/gridpoint.com
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-22'
 modified: '2026-08-22'
 tags:
 - Company
+- Energy
+- Energy Management
+- Buildings
+- Building Automation
+- Sustainability
+- Internet of Things
+- Demand Response
+- Facilities
+- Analytics
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -20,4 +42,71 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://forgeglobal.com/gridpoint_stock/
+  url: https://www.gridpoint.com/
+- type: Documentation
+  url: https://knowledge.gridpoint.com/
+- type: Support
+  url: https://www.gridpoint.com/contact-us/
+- type: HelpCenter
+  url: https://knowledge.gridpoint.com/
+- type: Blog
+  url: https://resources.gridpoint.com/blog
+- type: SignUp
+  url: https://www.gridpoint.com/get-started/
+- type: Login
+  url: https://ems.gridpoint.com/login
+- type: TermsOfService
+  url: https://www.gridpoint.com/terms-of-use/
+- type: PrivacyPolicy
+  url: https://www.gridpoint.com/privacy-policy/
+- type: GitHubOrganization
+  url: https://github.com/gridpoint-com
+- type: StatusPage
+  url: https://status.gridpoint.com/
+- type: WellKnown
+  url: well-known/gridpoint-well-known.yml
+- type: Authentication
+  url: authentication/gridpoint-authentication.yml
+- type: OpenIDConnect
+  url: well-known/gridpoint-openid-configuration.json
+- type: OAuthScopes
+  url: scopes/gridpoint-scopes.yml
+- type: Packages
+  url: packages/gridpoint-packages.yml
+- type: Lifecycle
+  url: lifecycle/gridpoint-lifecycle.yml
+- type: Conformance
+  url: conformance/gridpoint-conformance.yml
+- type: DomainSecurity
+  url: security/gridpoint-domain-security.yml
+- type: Plans
+  url: plans/gridpoint-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/gridpoint-rate-limits.yml
+- type: LLMsTxt
+  url: llms/gridpoint-llms.txt
+x-enrichment:
+  date: '2026-08-22'
+  status: minimal
+  artifacts_added: 12
+  pass: local-v1
+x-coverage:
+  state: gated
+  reason: customer-only-docs
+  detail: >-
+    GridPoint has no developer surface at all — developer/docs/api.gridpoint.com
+    do not resolve and knowledge.gridpoint.com is hardware troubleshooting — yet
+    its own ORY Hydra authorization server anonymously advertises the
+    client_credentials grant plus ROLE_PARTNER_* and ROLE_SYSTEM scopes, so the
+    API exists and is reachable only by an authenticated customer or
+    commissioning partner.
+  evidence:
+    - url: https://hydra.gridpoint.com/.well-known/openid-configuration
+      status: 200
+    - url: https://ems.gridpoint.com/login
+      status: 200
+    - url: https://www.gridpoint.com/llms.txt
+      status: 404
+    - url: https://ems.gridpoint.com/openapi.json
+      status: 404
+  checked: '2026-08-22'

@@ -1,0 +1,121 @@
+generated: '2026-08-22'
+method: probed
+source: >-
+  well-known/gridpoint-openid-configuration.json,
+  well-known/gridpoint-jwks.json, security/gridpoint-domain-security.yml, and
+  the 2026-08-22 probe sweep of every reachable GridPoint host.
+description: >-
+  Cross-cutting standards conformance for GridPoint. Almost every entry here is
+  false for the same structural reason: GridPoint publishes no API contract, so
+  there is nothing to assert conformance against. The exceptions are real and
+  are worth stating plainly — GridPoint operates a standards-compliant OAuth 2.0
+  / OpenID Connect authorization server and serves its discovery and JWKS
+  documents anonymously, which is more machine-readable identity infrastructure
+  than most providers in this cohort publish.
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      RFC 6749 authorization server at https://hydra.gridpoint.com:443/ —
+      /oauth2/auth, /oauth2/token, /oauth2/revoke (RFC 7009) and /oauth2/clients.
+      Advertises authorization_code, implicit, client_credentials and
+      refresh_token grants. Source: well-known/gridpoint-openid-configuration.json.
+  - id: oidc
+    conforms: true
+    evidence: >-
+      OpenID Connect Discovery 1.0 document served at
+      https://hydra.gridpoint.com/.well-known/openid-configuration (HTTP 200,
+      application/json) with issuer, authorization_endpoint, token_endpoint,
+      userinfo_endpoint and jwks_uri; live JWKS with an RS256 signing key at
+      /.well-known/jwks.json. Backchannel and frontchannel logout are advertised.
+  - id: rfc7591
+    conforms: true
+    evidence: >-
+      OAuth 2.0 Dynamic Client Registration endpoint advertised at
+      https://hydra.gridpoint.com:443/oauth2/clients.
+  - id: rfc8414
+    conforms: false
+    evidence: >-
+      /.well-known/oauth-authorization-server returns 404 on hydra, identity and
+      ems hosts; discovery is OIDC-only.
+  - id: rfc9728
+    conforms: false
+    evidence: /.well-known/oauth-protected-resource returns 404 on every host probed.
+  - id: pkce
+    conforms: false
+    evidence: >-
+      No code_challenge_methods_supported member in the discovery document. Hydra
+      may still accept PKCE, but GridPoint does not advertise it, so a client
+      cannot discover it.
+  - id: rfc9457
+    conforms: false
+    evidence: No published error contract; no application/problem+json surface observed.
+  - id: idempotency
+    conforms: false
+    evidence: No published idempotency-key convention (no API documentation of any kind).
+  - id: pagination
+    conforms: false
+    evidence: No published pagination convention.
+  - id: rate-limit-headers
+    conforms: false
+    evidence: >-
+      No documented RateLimit-* / X-RateLimit-* headers; see
+      rate-limits/gridpoint-rate-limits.yml.
+  - id: security-txt
+    conforms: false
+    evidence: /.well-known/security.txt returns 404 or 403 on all seven hosts probed.
+  - id: hsts
+    conforms: true
+    evidence: >-
+      www.gridpoint.com serves Strict-Transport-Security with max-age 63072000
+      over TLS 1.3. Source: security/gridpoint-domain-security.yml.
+  - id: dnssec
+    conforms: false
+    evidence: gridpoint.com is not DNSSEC-signed.
+  - id: caa
+    conforms: false
+    evidence: No CAA records published for gridpoint.com.
+  - id: spf
+    conforms: true
+    evidence: SPF record published for gridpoint.com.
+  - id: dmarc
+    conforms: true
+    evidence: DMARC published for gridpoint.com with policy p=quarantine.
+domain_standards:
+  note: >-
+    REWARD-ONLY, AND NOT AWARDED HERE. GridPoint's market — commercial building
+    energy management — has real domain standards, and GridPoint's product
+    demonstrably speaks several of them at the DEVICE layer: its knowledge base
+    has a whole BACnet section covering York BACnet equipment, and its GitHub
+    organization forks libmodbus. But `domain_standard_conformance` reads the
+    CONTRACT, not the product. GridPoint publishes no contract, so no domain
+    standard is DECLARED anywhere a machine can read it, and none is asserted
+    here. The device-protocol evidence is recorded below as a lead, not a claim.
+  candidates_not_asserted:
+    - standard: BACnet/IP (ASHRAE 135)
+      declared_in_contract: false
+      evidence: >-
+        https://knowledge.gridpoint.com/en_US/bacnet — customer-facing
+        troubleshooting section for BACnet-connected equipment (York rooftop
+        units). Device-layer integration, not an API declaration.
+    - standard: Modbus
+      declared_in_contract: false
+      evidence: >-
+        https://github.com/gridpoint-com/libmodbus — fork of the upstream Modbus
+        library in GridPoint's controller firmware toolchain.
+    - standard: OpenADR / IEEE 2030.5 (demand response, grid services)
+      declared_in_contract: false
+      evidence: >-
+        GridPoint markets demand management and grid services
+        (https://www.gridpoint.com/solutions/grid-services/, HTTP 200) but names
+        no signalling standard on any public page and publishes no contract.
+    - standard: Green Button / ESPI
+      declared_in_contract: false
+      evidence: No mention found on any public GridPoint surface.
+compliance:
+  published_certifications: []
+  note: >-
+    No trust center, compliance page, or named certification (SOC 2, ISO 27001,
+    PCI, FedRAMP) was found by probe-security-programs.py or by manual search of
+    the marketing site, despite GridPoint serving U.S. federal and utility
+    customers. No `Compliance` pointer is emitted.

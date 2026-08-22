@@ -1,0 +1,99 @@
+generated: '2026-08-22'
+method: searched
+source: >-
+  https://github.com/gridpoint-com (GitHub org, verified as GridPoint's — org
+  name "GridPoint", blog https://gridpoint.com), and the Hex.pm package metadata
+  API (https://hex.pm/api/packages/<name>), queried 2026-08-22. npm, PyPI, Maven
+  Central, NuGet, pkg.go.dev, RubyGems, Packagist and crates.io were searched for
+  a GridPoint client library and returned none.
+description: >-
+  IMPORTANT — READ THE `kind:` FIELD. GridPoint publishes NO API client SDK in
+  any language. What it does publish, from its own GitHub organization, is a
+  small set of general-purpose open-source Elixir/Nerves libraries that came out
+  of building its edge firmware and its Phoenix web platform. These are real,
+  first-party, currently-maintained packages, and they are recorded here as
+  such — but they wrap nothing of GridPoint's API and cannot be used to call
+  GridPoint. No `SDKs` pointer is emitted in apis.yml for that reason; counting
+  them as SDKs would credit GridPoint with client libraries for an API it does
+  not publish. The rest of the org's 29 repositories are forks of upstream
+  projects (Zephyr, Nerves, linux-at91, libmodbus, fwup, zcbor) used in the
+  controller firmware toolchain, not GridPoint packages.
+package_count: 4
+sdk_count: 0
+packages:
+  - language: elixir
+    registry: hex
+    name: plox
+    kind: open-source-library
+    url: https://hex.pm/packages/plox
+    source: https://github.com/gridpoint-com/plox
+    install: '{:plox, "~> 0.3.0"}'
+    official: true
+    version: 0.3.0
+    published: '2026-03-27'
+    license: MIT
+    downloads_all_time: 4212
+    note: >-
+      Server-side rendered SVG graphing components for Phoenix and LiveView.
+      GridPoint's most-adopted public package (107 GitHub stars). Actively
+      maintained. Not an API client.
+  - language: elixir
+    registry: hex
+    name: ostara
+    kind: open-source-library
+    url: https://hex.pm/packages/ostara
+    source: https://github.com/gridpoint-com/ostara
+    install: '{:ostara, "~> 0.4.4"}'
+    official: true
+    version: 0.4.4
+    published: '2024-10-21'
+    license: Apache-2.0
+    downloads_all_time: 12940
+    note: >-
+      Transforms Ecto schemas into JSON Schemas. Last release predates this
+      profiling by nearly two years, but download volume is still rising
+      (7,130 recent downloads at time of check). Not an API client.
+  - language: elixir
+    registry: null
+    name: svg_island
+    kind: open-source-library
+    url: https://github.com/gridpoint-com/svg_island
+    source: https://github.com/gridpoint-com/svg_island
+    official: true
+    version: null
+    published: null
+    note: >-
+      First-party GridPoint repository (21 stars) with no Hex.pm release —
+      https://hex.pm/api/packages/svg_island returns "Page not found", so there
+      is no registry metadata to read and no version a consumer can pin.
+      Distributed as source only.
+  - language: yaml
+    registry: null
+    name: actions-nerves-system
+    kind: ci-action
+    url: https://github.com/gridpoint-com/actions-nerves-system
+    source: https://github.com/gridpoint-com/actions-nerves-system
+    official: true
+    version: null
+    published: null
+    note: >-
+      GitHub Action for building Nerves systems. Consumed by SHA/ref from the
+      repository; GitHub Actions has no package registry metadata endpoint, and
+      the action publishes no tagged release, so no version can be recorded.
+absent:
+  - registry: npm
+    result: no first-party GridPoint package found
+  - registry: pypi
+    result: no first-party GridPoint package found
+  - registry: maven-central
+    result: no first-party GridPoint package found
+  - registry: nuget
+    result: no first-party GridPoint package found
+  - registry: rubygems
+    result: no first-party GridPoint package found
+  - registry: packagist
+    result: no first-party GridPoint package found
+  - registry: crates.io
+    result: no first-party GridPoint package found
+  - registry: pkg.go.dev
+    result: no first-party GridPoint package found

@@ -1,0 +1,81 @@
+# GridPoint
+
+> GridPoint (Reston, Virginia; founded 2003) builds energy management and
+> sustainability systems for commercial buildings — edge controllers, submeters,
+> thermostats and lighting panels paired with the cloud-based GridPoint Energy
+> Manager analytics platform. It serves multi-site retail, convenience,
+> restaurant, automotive and public-sector portfolios.
+
+<!--
+generated: 2026-08-22
+method: generated
+source: apis.yml + repo artifacts; GridPoint publishes no llms.txt of its own
+        (https://www.gridpoint.com/llms.txt -> HTTP 404, 2026-08-22).
+        Every URL below was fetched and its status recorded on that date.
+-->
+
+## Important: GridPoint publishes no public API
+
+As of 2026-08-22 GridPoint has no developer portal, no API reference, no
+OpenAPI/AsyncAPI/GraphQL contract, no SDK, no Postman collection, no MCP server
+and no A2A agent card. developer.gridpoint.com, docs.gridpoint.com,
+api.gridpoint.com and apidocs.gridpoint.com do not resolve in DNS. An API
+demonstrably exists behind the customer application, and GridPoint's own
+authorization server advertises the client_credentials grant plus partner and
+system roles — but its contract and reference are customer/partner-gated.
+Do not infer endpoints, parameters or payloads for GridPoint; none are published.
+
+## Company
+
+- [GridPoint](https://www.gridpoint.com/): Company website (200)
+- [Solutions](https://www.gridpoint.com/solutions/): Energy efficiency, operational efficiency, demand management, grid services, sustainability (200)
+- [Industries](https://www.gridpoint.com/industries/): Retail & convenience, food & beverage, automotive (200)
+- [Company](https://www.gridpoint.com/company/): About GridPoint (200)
+- [Partners](https://www.gridpoint.com/company/partners/): Technology and channel partners (200)
+- [Newsroom](https://www.gridpoint.com/company/newsroom/): Press releases (200)
+- [Careers](https://www.gridpoint.com/company/careers/): Open roles (200)
+
+## Documentation and support
+
+- [Knowledge Base](https://knowledge.gridpoint.com/): Customer knowledge base — controllers (EC2000, EC100, Edge, 1204/3612), thermostats (TS101, TS150), lighting (LCA, LCP-20, MicroLite, Siemens, Square D), meters (1204EX, AcuRev), BACnet equipment, refrigeration (KE2), peripherals, and the GridPoint glossary (200)
+- [Contact / Support](https://www.gridpoint.com/contact-us/): Support and sales contact (200)
+- [Get Started](https://www.gridpoint.com/get-started/): The only sign-up path; a contact form, not self-serve (200)
+- [Status](https://status.gridpoint.com/): GridPoint Application Status Page, hosted on Status.io. HTML only — no JSON or RSS status feed is exposed (200)
+
+## Applications
+
+- [GridPoint Energy Manager](https://ems.gridpoint.com/login): Cloud analytics application; customer login (200)
+- [Energy portal (legacy)](https://energy.gridpoint.com/users/login): Older customer portal; answers 403 to non-browser clients (403)
+
+## Identity (the only machine-readable API surface GridPoint publishes)
+
+- [OpenID Connect discovery](https://hydra.gridpoint.com/.well-known/openid-configuration): Issuer https://hydra.gridpoint.com:443/, ORY Hydra. Grants: authorization_code, implicit, client_credentials, refresh_token. Anonymous, 200
+- [JWKS](https://hydra.gridpoint.com/.well-known/jwks.json): RS256 signing keys. Anonymous, 200
+- Also served, byte-identical, from https://identity.gridpoint.com/.well-known/openid-configuration and https://ems.gridpoint.com/.well-known/openid-configuration
+- Scopes are coarse ROLE_* roles, not resource permissions: ROLE_GP_ADMIN, ROLE_GP_SUPPORT, ROLE_GP_ANALYST, ROLE_GP_SALES, ROLE_CUSTOMER_ANALYST, ROLE_CUSTOMER_SITE_MANAGER, ROLE_PARTNER_COMMISSIONER, ROLE_PARTNER_SUPPORT, ROLE_PARTNER_SUPPORT_ADMIN, ROLE_PROVISIONER, ROLE_SYSTEM, ROLE_OIDC_USER
+
+## Open source
+
+- [github.com/gridpoint-com](https://github.com/gridpoint-com): GridPoint's GitHub organization — 29 repositories, mostly forks of the Nerves/Zephyr/linux-at91 firmware toolchain (200)
+- [plox](https://hex.pm/packages/plox): First-party Elixir library — server-side rendered SVG graphing for Phoenix and LiveView. v0.3.0, 2026-03-27, MIT (200)
+- [ostara](https://hex.pm/packages/ostara): First-party Elixir library — Ecto schemas to JSON Schema. v0.4.4, 2024-10-21, Apache-2.0 (200)
+- Neither is a GridPoint API client. GridPoint ships no SDK.
+
+## Media
+
+- [Blog](https://resources.gridpoint.com/blog): GridPoint blog and resources (200)
+- [Resources](https://www.gridpoint.com/resources/): Case studies, webinars, whitepapers (200)
+- [LinkedIn](https://www.linkedin.com/company/gridpoint/) (200)
+- [YouTube](https://www.youtube.com/c/gridpoint) (200)
+
+## Legal
+
+- [Terms of Use](https://www.gridpoint.com/terms-of-use/) (200)
+- [Privacy Policy](https://www.gridpoint.com/privacy-policy/) (200)
+
+## Not published
+
+No pricing page (https://www.gridpoint.com/pricing/ -> 404). No security.txt on
+any host. No /.well-known/api-catalog, ai-plugin.json, agent-card.json or
+agent.json on any host. No changelog. No deprecation or versioning policy. No
+public SLA. No trust center or named certification. No documented rate limits.

@@ -1,0 +1,143 @@
+generated: '2026-08-22'
+method: probed
+source: >-
+  Direct HTTP probes, 2026-08-22, of every GridPoint host reachable without
+  credentials: the marketing site (www.gridpoint.com), the customer knowledge
+  base (knowledge.gridpoint.com), the HubSpot resources/blog host
+  (resources.gridpoint.com), the GridPoint Energy Manager application
+  (ems.gridpoint.com), the legacy Energy portal (energy.gridpoint.com), the
+  OAuth entry point the Energy Manager app is configured against
+  (identity.gridpoint.com, from window._oauthBaseUrl in the app's own
+  apiService.js) and the ORY Hydra authorization server it resolves to
+  (hydra.gridpoint.com).
+description: >-
+  GridPoint publishes no security.txt, api-catalog or ai-plugin.json anywhere.
+  It DOES serve real, anonymous OpenID Connect discovery: identical
+  openid-configuration documents are returned by hydra.gridpoint.com,
+  identity.gridpoint.com and ems.gridpoint.com, all naming the same issuer
+  (https://hydra.gridpoint.com:443/), plus a live JWKS. Those two documents are
+  the only machine-readable API artifacts GridPoint publishes publicly and are
+  saved here verbatim. energy.gridpoint.com answers 403 to every automated
+  request including the site root's own paths, so its /.well-known/ surface is
+  recorded as unreadable rather than absent.
+hosts:
+  - host: https://hydra.gridpoint.com
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        type: application/json
+        file: gridpoint-openid-configuration.json
+      - path: /.well-known/jwks.json
+        status: 200
+        type: application/json
+        file: gridpoint-jwks.json
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://identity.gridpoint.com
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        type: application/json
+        note: >-
+          Byte-identical to the hydra.gridpoint.com document (same issuer);
+          saved once as gridpoint-openid-configuration.json.
+      - path: /.well-known/jwks.json
+        status: 200
+        type: application/json
+        note: Identical to the hydra.gridpoint.com JWKS.
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://ems.gridpoint.com
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        type: application/json
+        note: >-
+          Same Hydra document proxied through the Energy Manager application
+          host; issuer is still https://hydra.gridpoint.com:443/.
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://www.gridpoint.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://knowledge.gridpoint.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://resources.gridpoint.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 301
+        note: HubSpot host 301s every /.well-known/ path back into the site; no document served.
+      - path: /.well-known/api-catalog
+        status: 301
+      - path: /.well-known/ai-plugin.json
+        status: 301
+      - path: /.well-known/agent-card.json
+        status: 301
+  - host: https://energy.gridpoint.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 403
+        note: >-
+          The legacy Energy portal answers 403 to every non-browser request,
+          including its own login path assets. Recorded as blocked, not absent.
+      - path: /.well-known/openid-configuration
+        status: 403
+      - path: /.well-known/api-catalog
+        status: 403
+      - path: /.well-known/agent-card.json
+        status: 403

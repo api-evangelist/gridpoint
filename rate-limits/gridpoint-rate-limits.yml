@@ -1,0 +1,35 @@
+generated: '2026-08-22'
+method: searched
+source: >-
+  https://knowledge.gridpoint.com/ (customer knowledge base, HTTP 200 — hardware
+  troubleshooting only, no API section), https://www.gridpoint.com/ site link
+  graph, and the 2026-08-22 contract-discovery sweep, which found no API
+  documentation on any GridPoint host.
+limit_count: 0
+note: >-
+  GridPoint documents no rate limits, because it documents no API. No published
+  quota, window, burst, 429 behavior or response header could be found on any
+  public GridPoint surface. Two related client-side values are visible in the
+  GridPoint Energy Manager application's own unauthenticated JavaScript
+  (https://ems.gridpoint.com/, window._maxAPIAttempts = "10" and
+  window._retryIntervalForAPI = "5000"), but these are the browser client's
+  retry budget and polling interval — they describe how GridPoint's own front
+  end behaves, not a server-side limit an integrator could rely on, so they are
+  recorded as observations and NOT as limits.
+limits: []
+headers: []
+observations:
+  - source: https://ems.gridpoint.com/
+    field: window._maxAPIAttempts
+    value: '10'
+    interpretation: Client-side retry attempt ceiling in the Energy Manager web app.
+  - source: https://ems.gridpoint.com/
+    field: window._retryIntervalForAPI
+    value: '5000'
+    interpretation: Client-side retry/poll interval in milliseconds.
+  - source: https://www.gridpoint.com/robots.txt
+    field: Crawl-delay
+    value: '10'
+    interpretation: >-
+      Crawl politeness directive for the marketing site. Not an API limit, but it
+      is the only rate directive GridPoint publishes anywhere.

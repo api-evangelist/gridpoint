@@ -1,0 +1,26 @@
+generated: '2026-08-22'
+method: searched
+source: >-
+  https://www.gridpoint.com/pricing/ (HTTP 404 — no such page),
+  https://www.gridpoint.com/get-started/ (HTTP 200 — contact form),
+  https://www.gridpoint.com/solutions/ (HTTP 200), and the full site link graph
+  from https://www.gridpoint.com/ (no pricing link exists in the navigation or
+  footer). Probed 2026-08-22.
+plan_count: 0
+currency: null
+note: >-
+  GridPoint publishes no plans, no price list and no rate card. It sells a
+  subscription-based energy-management service to multi-site commercial
+  portfolios through a sales motion: the only conversion path on the site is
+  https://www.gridpoint.com/get-started/, a "contact us" form. /pricing/ returns
+  a hard 404 and no pricing page exists under any other path in the site
+  navigation. Since 2019 the subscription model has been backed by Hannon
+  Armstrong financing, per public reporting, but no published figure attaches to
+  any tier. This is an honest zero, recorded so the absence is legible rather
+  than looking un-checked.
+plans: []
+evidence:
+  - url: https://www.gridpoint.com/pricing/
+    status: 404
+  - url: https://www.gridpoint.com/get-started/
+    status: 200

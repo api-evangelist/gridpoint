@@ -64,5 +64,41 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-GridPoint is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/gridpoint_stock/
+GridPoint is a Reston, Virginia clean-technology company, founded in 2003, that builds energy
+management and sustainability systems for commercial buildings, enterprises and government
+agencies. It pairs its own edge hardware — EC2000 and Edge controllers, submeters, thermostats,
+lighting control panels and BACnet/Modbus gateways — with the cloud-based GridPoint Energy Manager
+analytics platform, delivering HVAC and lighting automation, equipment-level submetering,
+refrigeration monitoring, demand management, grid services and sustainability reporting across
+multi-site retail, convenience, restaurant, automotive and public-sector estates.
+
+- https://www.gridpoint.com/
+
+## What this profile found (2026-08-22)
+
+**GridPoint publishes no public API.** There is no developer portal, no API reference, and no
+machine-readable contract of any kind — no OpenAPI, AsyncAPI, GraphQL SDL, Protobuf, WSDL, Postman
+collection, MCP server or A2A agent card. `developer.gridpoint.com`, `docs.gridpoint.com`,
+`api.gridpoint.com` and `apidocs.gridpoint.com` do not resolve in DNS.
+
+An API clearly exists behind the product: the GridPoint Energy Manager application authenticates
+against GridPoint's own OAuth 2.0 / OpenID Connect server, which **anonymously advertises the
+`client_credentials` grant and partner/system roles** — machine-to-machine integration is a shipped
+capability. What is not published is the contract. That makes this a *gated* profile, not an empty
+one, and it is the provider's to fix.
+
+What GridPoint does publish, and what is captured here:
+
+| Artifact | What was found |
+|---|---|
+| `well-known/` | Live OIDC discovery + JWKS on `hydra.`, `identity.` and `ems.gridpoint.com`, saved verbatim. No `security.txt`, `api-catalog` or agent card anywhere. |
+| `authentication/` | ORY Hydra authorization server profile read from discovery: four grant types, dynamic client registration, RS256, back/front-channel logout. PKCE is not advertised. |
+| `scopes/` | 16 published scopes — coarse `ROLE_*` roles (GridPoint staff / customer / partner / machine), not resource permissions. |
+| `lifecycle/` | A real Status.io status page at `status.gridpoint.com`, HTML only — no JSON or RSS feed. No versioning or deprecation policy. |
+| `packages/` | Two first-party Elixir libraries on Hex.pm (`plox`, `ostara`). Neither is an API client; **GridPoint ships no SDK**. |
+| `conformance/` | OAuth 2.0, OIDC, RFC 7591, HSTS, SPF and DMARC pass. RFC 8414, RFC 9728, PKCE advertisement, DNSSEC and CAA do not. |
+| `plans/` | No pricing page — `/pricing/` is a hard 404. Contact-sales only. |
+| `rate-limits/` | No documented limits. |
+
+The device layer speaks BACnet and Modbus, but neither is declared in any contract, so no domain
+standard is asserted.

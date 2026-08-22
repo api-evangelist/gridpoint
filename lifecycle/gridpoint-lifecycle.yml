@@ -1,0 +1,53 @@
+generated: '2026-08-22'
+method: searched
+source: >-
+  https://status.gridpoint.com/ (HTTP 200, Status.io-hosted "GridPoint
+  Application Status Page"); https://www.gridpoint.com/terms-of-use/;
+  https://knowledge.gridpoint.com/. Probed 2026-08-22.
+description: >-
+  GridPoint runs a real, public application status page and nothing else in this
+  category. There is no published API versioning scheme, no deprecation policy,
+  no Sunset/Deprecation (RFC 8594) commitment, no changelog and no numeric
+  uptime SLA reachable without a customer agreement — consistent with a company
+  that publishes no API contract at all.
+versioning:
+  scheme: null
+  mechanism: null
+  docs: null
+  notes: >-
+    No API versioning policy is published. The Energy Manager application
+    fingerprints its own front-end build with a buildId query parameter
+    (?buildId=2026-06-02T23:19:34Z), which dates the deployed application but is
+    not an API version an integrator could pin.
+deprecation:
+  policy_url: null
+  changelog: null
+  sunset_header: false
+  deprecation_header: false
+  notes: >-
+    No deprecation or sunset policy found on the marketing site, the knowledge
+    base or the status page. No `Deprecation` pointer is emitted for this repo.
+sla:
+  url: null
+  public_uptime_target: null
+  notes: >-
+    No public SLA. https://www.gridpoint.com/terms-of-use/ (HTTP 200) covers
+    website use, not service availability; availability commitments sit inside
+    the customer subscription agreement.
+status_page:
+  url: https://status.gridpoint.com/
+  status: 200
+  provider: Status.io
+  title: GridPoint Application Status Page
+  scope: >-
+    Application-level status for the GridPoint platform. The page carries a
+    noindex/nofollow robots meta and auto-refreshes every 300 seconds.
+  machine_readable: false
+  machine_readable_note: >-
+    No JSON or RSS status feed is exposed at the vanity domain: /api/v2/status.json,
+    /api/v2/summary.json, /api/v2/components.json, /index.json and /history.rss all
+    return 404. An agent can read the status page only by parsing HTML.
+  internal_counterpart: >-
+    internal.status.gridpoint.com also exists in certificate transparency logs;
+    not probed as a public surface.
+deprecated_products: []

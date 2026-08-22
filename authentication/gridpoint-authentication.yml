@@ -1,0 +1,89 @@
+generated: '2026-08-22'
+method: probed
+source: https://hydra.gridpoint.com/.well-known/openid-configuration
+docs: null
+description: >-
+  GridPoint publishes no developer documentation and no OpenAPI, so there is no
+  securityScheme block to derive from. This profile is read entirely from the
+  anonymous OpenID Connect discovery document GridPoint's own authorization
+  server serves, and from the GridPoint Energy Manager application's public
+  JavaScript (window._oauthBaseUrl = "https://identity.gridpoint.com/identity/"
+  in https://ems.gridpoint.com/assets/javascripts/services/apiService.js), which
+  shows the application exchanging and refreshing OAuth 2.0 access/refresh
+  tokens against that endpoint. Nothing here was inferred from marketing copy.
+summary:
+  types:
+    - oauth2
+    - openIdConnect
+  public_docs: false
+  note: >-
+    An API exists — the authorization server advertises the client_credentials
+    grant and partner/system roles as scopes — but the contract it protects is
+    not published. Credentials and reference are both customer/partner-gated.
+schemes:
+  - name: gridpoint-oidc
+    type: openIdConnect
+    openIdConnectUrl: https://hydra.gridpoint.com/.well-known/openid-configuration
+    issuer: https://hydra.gridpoint.com:443/
+    software: ORY Hydra (self-hosted; identified by the /oauth2/auth, /oauth2/clients
+      and /oauth2/sessions/logout endpoint layout and the health/alive probe)
+    endpoints:
+      authorization: https://hydra.gridpoint.com:443/oauth2/auth
+      token: https://hydra.gridpoint.com:443/oauth2/token
+      userinfo: https://hydra.gridpoint.com:443/userinfo
+      jwks: https://hydra.gridpoint.com:443/.well-known/jwks.json
+      registration: https://hydra.gridpoint.com:443/oauth2/clients
+      revocation: https://hydra.gridpoint.com:443/oauth2/revoke
+      end_session: https://hydra.gridpoint.com:443/oauth2/sessions/logout
+    grant_types:
+      - authorization_code
+      - implicit
+      - client_credentials
+      - refresh_token
+    response_types:
+      - code
+      - code id_token
+      - id_token
+      - token id_token
+      - token
+      - token id_token code
+    token_endpoint_auth_methods:
+      - client_secret_post
+      - client_secret_basic
+      - private_key_jwt
+      - none
+    id_token_signing_alg_values:
+      - RS256
+    claims:
+      - sub
+      - email
+      - username
+    features:
+      dynamic_client_registration: true
+      pkce_advertised: false
+      backchannel_logout: true
+      frontchannel_logout: true
+      request_object_signing: true
+      require_request_uri_registration: true
+    sources:
+      - well-known/gridpoint-openid-configuration.json
+      - well-known/gridpoint-jwks.json
+  - name: gridpoint-energy-manager-session
+    type: oauth2
+    description: >-
+      The GridPoint Energy Manager web application (https://ems.gridpoint.com)
+      obtains access_token / refresh_token pairs from
+      https://identity.gridpoint.com/identity/ and stores them client-side,
+      refreshing before expiry. Observed in the application's own unauthenticated
+      JavaScript; the endpoints it calls afterwards are not publicly documented.
+    flows:
+      - flow: refreshToken
+        tokenUrl: https://identity.gridpoint.com/identity/
+    sources:
+      - https://ems.gridpoint.com/assets/javascripts/services/apiService.js
+gaps:
+  - No public authentication guide, quickstart, or key-issuance page.
+  - No OpenAPI declaring securitySchemes, so scheme-to-operation binding is unknown.
+  - PKCE support is not advertised in discovery (no code_challenge_methods_supported).
+  - No /.well-known/oauth-authorization-server (RFC 8414) or oauth-protected-resource
+    (RFC 9728) document at any host; discovery is OIDC-only.
