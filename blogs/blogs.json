@@ -2,6 +2,13 @@
   "repo": "gridpoint",
   "feeds": [
     {
+      "source": "https://gridpoint.helpjuice.com/questions.atom",
+      "feed_url": "https://gridpoint.helpjuice.com/questions.atom",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
       "source": "https://knowledge.gridpoint.com/",
       "feed_url": "https://gridpoint.helpjuice.com/questions.atom",
       "title": "",
@@ -9,6 +16,6 @@
       "method": "discovered"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-08-22T20:20:02Z"
+  "post_count": 50,
+  "fetched": "2026-08-30T22:33:40Z"
 }
