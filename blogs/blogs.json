@@ -2,11 +2,25 @@
   "repo": "gridpoint",
   "feeds": [
     {
-      "source": "https://knowledge.gridpoint.com/",
-      "feed_url": "https://knowledge.gridpoint.com/",
+      "source": "https://resources.gridpoint.com/blog/rss.xml",
+      "feed_url": "https://resources.gridpoint.com/blog/rss.xml",
       "title": "",
       "saved": 0,
-      "method": "none"
+      "method": "feed"
+    },
+    {
+      "source": "https://resources.gridpoint.com/blog",
+      "feed_url": "https://resources.gridpoint.com/blog/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    },
+    {
+      "source": "https://knowledge.gridpoint.com/",
+      "feed_url": "https://gridpoint.helpjuice.com/questions.atom",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
     },
     {
       "source": "https://gridpoint.helpjuice.com/questions.atom",
@@ -17,7 +31,7 @@
     }
   ],
   "post_count": 50,
-  "fetched": "2026-10-03T12:30:02Z",
+  "fetched": "2026-10-10T13:15:00Z",
   "feed_nature": "undetermined",
   "feed_nature_basis": null,
   "feed_nature_note": "Whether these posts are the vendor publishing or its support community, decided on the URL path grammar of the saved posts -- not the hostname, which carries both on Khoros, and not author diversity, which flags large vendor blogs as forums. 'undetermined' means undetermined."
