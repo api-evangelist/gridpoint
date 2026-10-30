@@ -64,41 +64,106 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-GridPoint is a Reston, Virginia clean-technology company, founded in 2003, that builds energy
-management and sustainability systems for commercial buildings, enterprises and government
-agencies. It pairs its own edge hardware — EC2000 and Edge controllers, submeters, thermostats,
-lighting control panels and BACnet/Modbus gateways — with the cloud-based GridPoint Energy Manager
-analytics platform, delivering HVAC and lighting automation, equipment-level submetering,
-refrigeration monitoring, demand management, grid services and sustainability reporting across
-multi-site retail, convenience, restaurant, automotive and public-sector estates.
+GridPoint is a Reston, Virginia clean-technology company, founded in 2003, that builds energy management and sustainability systems for commercial buildings, enterprises and government agencies. It combines its own edge hardware — EC2000 and Edge controllers, submeters, thermostats, lighting control panels and BACnet/Modbus gateways — with the cloud-based GridPoint Energy Manager analytics platform, delivering HVAC and lighting automation, equipment-level submetering, refrigeration monitoring, demand management, grid services and carbon/sustainability reporting for multi-site portfolios in retail, convenience, restaurant, automotive and public-sector estates. GridPoint sells the platform as a subscription service and integrates with existing building assets rather than requiring a rip-and-replace. It operates a customer application, a partner commissioning channel and a public knowledge base, but publishes no developer portal, no API reference and no machine-readable API contract; the only machine-readable artifacts it serves anonymously are the OpenID Connect discovery and JWKS documents of its own authorization server.
 
-- https://www.gridpoint.com/
+**Areas:** Company · Energy · Energy Management · Buildings · Building Automation · Sustainability · IoT · Demand Response · Facilities · Analytics
 
-## What this profile found (2026-08-22)
+## GridPoint on APIs.io
 
-**GridPoint publishes no public API.** There is no developer portal, no API reference, and no
-machine-readable contract of any kind — no OpenAPI, AsyncAPI, GraphQL SDL, Protobuf, WSDL, Postman
-collection, MCP server or A2A agent card. `developer.gridpoint.com`, `docs.gridpoint.com`,
-`api.gridpoint.com` and `apidocs.gridpoint.com` do not resolve in DNS.
+Everything profiled for GridPoint is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/gridpoint/](https://apis.io/providers/gridpoint/)** — or go straight to one of the APIs or properties below.
 
-An API clearly exists behind the product: the GridPoint Energy Manager application authenticates
-against GridPoint's own OAuth 2.0 / OpenID Connect server, which **anonymously advertises the
-`client_credentials` grant and partner/system roles** — machine-to-machine integration is a shipped
-capability. What is not published is the contract. That makes this a *gated* profile, not an empty
-one, and it is the provider's to fix.
+### Published properties
 
-What GridPoint does publish, and what is captured here:
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-| Artifact | What was found |
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Gridpoint Authentication](https://apis.io/security/gridpoint/gridpoint-authentication/)
+- [Gridpoint Domain Security](https://apis.io/security/gridpoint/gridpoint-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Gridpoint Scopes](https://apis.io/scopes/gridpoint/gridpoint-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Gridpoint Plans Pricing](https://apis.io/plans/gridpoint/gridpoint-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Gridpoint Rate Limits](https://apis.io/rate-limits/gridpoint/gridpoint-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.gridpoint.com/)
+- [Documentation](https://knowledge.gridpoint.com/)
+- [Sign up](https://www.gridpoint.com/get-started/)
+- [Support](https://www.gridpoint.com/contact-us/)
+- [Blog](https://resources.gridpoint.com/blog)
+- [Terms of service](https://www.gridpoint.com/terms-of-use/)
+- [Privacy policy](https://www.gridpoint.com/privacy-policy/)
+- [GitHub](https://github.com/gridpoint-com)
+- [Status](https://status.gridpoint.com/)
+
+## API Evangelist rating
+
+**Kin Score 25.9** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
 |---|---|
-| `well-known/` | Live OIDC discovery + JWKS on `hydra.`, `identity.` and `ems.gridpoint.com`, saved verbatim. No `security.txt`, `api-catalog` or agent card anywhere. |
-| `authentication/` | ORY Hydra authorization server profile read from discovery: four grant types, dynamic client registration, RS256, back/front-channel logout. PKCE is not advertised. |
-| `scopes/` | 16 published scopes — coarse `ROLE_*` roles (GridPoint staff / customer / partner / machine), not resource permissions. |
-| `lifecycle/` | A real Status.io status page at `status.gridpoint.com`, HTML only — no JSON or RSS feed. No versioning or deprecation policy. |
-| `packages/` | Two first-party Elixir libraries on Hex.pm (`plox`, `ostara`). Neither is an API client; **GridPoint ships no SDK**. |
-| `conformance/` | OAuth 2.0, OIDC, RFC 7591, HSTS, SPF and DMARC pass. RFC 8414, RFC 9728, PKCE advertisement, DNSSEC and CAA do not. |
-| `plans/` | No pricing page — `/pricing/` is a hard 404. Contact-sales only. |
-| `rate-limits/` | No documented limits. |
+| Discoverability | 55.4 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 28.6 |
+| Access clarity | 34.2 |
 
-The device layer speaks BACnet and Modbus, but neither is declared in any contract, so no domain
-standard is asserted.
+**Agent readiness 17.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+
+**Regulatory alignment 34.4** — Energy & Utilities
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/gridpoint/](https://apis.io/providers/gridpoint/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for GridPoint: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/gridpoint/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
